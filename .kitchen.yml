@@ -1,0 +1,29 @@
+---
+driver:
+  aws_ssh_key_id: knife
+  name: ec2
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: centos-7.2
+    driver:
+      image_id: ami-e0c19f83
+      instance_type: t2.micro
+      region: ap-southeast-2
+      tags:
+        Name: Moodle Test
+
+transport:
+  ssh_key: ~/.ssh/knife.pem
+  username: ec2-user
+
+suites:
+  - name: default
+    run_list:
+      - recipe[yum-webtatic::default]
+      - recipe[postgresql::default]
+      - recipe[database::postgresql]
+      - recipe[moodle::default]
+    attributes:
