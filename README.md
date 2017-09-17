@@ -1,4 +1,2 @@
-# moodle
-
-TODO: Enter the cookbook description here.
+# Install Moodle with a LEPP stack using Chef
 
